@@ -35,8 +35,5 @@ The Country Explorer App is a web application that allows users to explore count
 - Click on the population header to sort the countries by population.
 - Navigate through pages or scroll to load more countries if pagination or lazy loading is implemented.
 
-## Contributing
-Contributions are welcome! Please feel free to submit a pull request or open an issue for any suggestions or improvements.
-
 ## License
 This project is open-source and available under the MIT License.
