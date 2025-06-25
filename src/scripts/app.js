@@ -3,25 +3,34 @@ const countryContainer = document.getElementById('country-list');
 const searchInput = document.getElementById('search');
 const regionFilter = document.getElementById('region-filter');
 let countries = [];
+let filteredCountries = [];
+let currentIndex = 0;
+const PAGE_SIZE = 20;
 
 // Fetch country data from the API
 async function fetchCountries() {
     try {
         const response = await fetch(apiUrl);
         countries = await response.json();
-        displayCountries(countries);
+        filteredCountries = countries;
+        currentIndex = 0;
+        displayCountries(filteredCountries, true);
         populateRegionFilter(countries);
     } catch (error) {
         console.error('Error fetching country data:', error);
     }
 }
 
-// Display countries in cards
-function displayCountries(countries) {
-    countryContainer.innerHTML = '';
-    countries.forEach(country => {
+// Display countries in cards with lazy loading
+function displayCountries(list, reset = false) {
+    if (reset) {
+        countryContainer.innerHTML = '';
+        currentIndex = 0;
+    }
+    const nextCountries = list.slice(currentIndex, currentIndex + PAGE_SIZE);
+    nextCountries.forEach(country => {
         const countryCard = document.createElement('div');
-        countryCard.classList.add('card'); // <-- Use 'card' for styling
+        countryCard.classList.add('card');
         countryCard.innerHTML = `
             <img src="${country.flags.svg}" alt="Flag of ${country.name.common}" class="country-flag">
             <h2>${country.name.common}</h2>
@@ -31,6 +40,7 @@ function displayCountries(countries) {
         `;
         countryContainer.appendChild(countryCard);
     });
+    currentIndex += PAGE_SIZE;
 }
 
 // Populate region filter options
@@ -54,14 +64,24 @@ regionFilter.addEventListener('change', () => {
 function filterAndDisplay() {
     const searchTerm = searchInput.value.toLowerCase();
     const selectedRegion = regionFilter.value;
-    let filtered = countries.filter(country =>
+    filteredCountries = countries.filter(country =>
         country.name.common.toLowerCase().includes(searchTerm)
     );
     if (selectedRegion !== 'All') {
-        filtered = filtered.filter(country => country.region === selectedRegion);
+        filteredCountries = filteredCountries.filter(country => country.region === selectedRegion);
     }
-    displayCountries(filtered);
+    displayCountries(filteredCountries, true);
 }
+
+// Lazy loading on scroll
+window.addEventListener('scroll', () => {
+    if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 200)) {
+        // Load more if available
+        if (currentIndex < filteredCountries.length) {
+            displayCountries(filteredCountries);
+        }
+    }
+});
 
 // Initial fetch
 fetchCountries();
