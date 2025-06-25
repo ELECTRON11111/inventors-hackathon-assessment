@@ -34,3 +34,7 @@ The Country Explorer App is a web application that allows users to explore count
 - Select a region from the filter options to narrow down the results.
 - Click on the population header to sort the countries by population.
 - Navigate through pages or scroll to load more countries if pagination or lazy loading is implemented.
+
+## Live App (Production)
+
+(Click here to view the live app)[https://getlinked-site.netlify.app/]
