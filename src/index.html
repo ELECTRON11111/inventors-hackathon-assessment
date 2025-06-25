@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country Explorer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/main.css">
+</head>
+<body>
+    <header>
+        <h1>Country Explorer</h1>
+    </header>
+    <div class="container">
+        <div class="search-container">
+            <input type="text" id="search" placeholder="Search by country name...">
+            <select id="region-filter" class="region-filter">
+                <option value="All">All Regions</option>
+            </select>
+        </div>
+        <main id="country-list">
+            <!-- Country cards will be dynamically inserted here -->
+        </main>
+    </div>
+    <footer>
+        <p>&copy; 2023 Country Explorer</p>
+    </footer>
+    <script src="scripts/app.js"></script>
+</body>
+</html>
