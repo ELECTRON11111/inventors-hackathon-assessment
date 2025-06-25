@@ -111,10 +111,3 @@ h1 {
         grid-template-columns: 1fr;
     }
 }
-
-footer {
-    text-align: center;
-    margin: 30px 0 10px 0;
-    color: #888;
-    font-size: 1em;
-}

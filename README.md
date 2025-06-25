@@ -25,7 +25,7 @@ The Country Explorer App is a web application that allows users to explore count
    ```
 2. Navigate to the project directory:
    ```
-   cd country-explorer-app
+   cd inventors-hackathon-assessment
    ```
 3. Open the `index.html` file in your web browser to view the application.
 
